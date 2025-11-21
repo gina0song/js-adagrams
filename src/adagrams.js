@@ -37,42 +37,40 @@ export const drawLetters = () => {
     }
   }
   //draw 10 letters
-  const letterBank = [];
+  const lettersInHand = [];
   for(let i = 0; i < 10; i ++){
     const index = Math.floor(Math.random() * letterDeck.length);
-    letterBank.push(letterDeck[index]);
+    lettersInHand.push(letterDeck[index]);
     letterDeck.splice(index, 1);
   }
 
-  return letterBank;
+  return lettersInHand;
 };
 
 
-//  def uses_available_letters(word, letter_bank): 
-// #     letter_bank_count = {} 
-// #     for letter in letter_bank: 
-// #         letter_bank_count[letter] = letter_bank_count.get(letter, 0) + 1 
-        
-// #     for letter in word.upper(): 
-// #         if letter_bank_count.get(letter, 0) == 0: 
-// #             return False 
-// #         letter_bank_count[letter] -= 1 
-        
-// #     return True
+
 export const usesAvailableLetters = (input, lettersInHand) => {
-//   const letterBankCount = {};
-//   for(const letter of lettersInHand){
-//     letterBankCount[letter] = letterBankCount.get(letter, 0) + 1;  
-//   }
-//   for(const letter of input.toUpperCase()){
-//     if(!letterBankCount[letter] || letterBankCount[letter] === 0){
-//       return false;
-//     }
-// };
+  const lettersInHandCount = {};
+
+  for (const letter of lettersInHand){
+    lettersInHandCount[letter] = (lettersInHandCount[letter] ?? 0 ) + 1;
+  };
+
+  for (const letter of input.toUpperCase()){
+    if((lettersInHandCount[letter] ?? 0 ) ===0){
+      return false;
+    }
+    lettersInHandCount[letter] -= 1;
+  }
+  return true;
+};
+
+
 
 export const scoreWord = (word) => {
   // Implement this method for wave 3
 };
+
 
 export const highestScoreFrom = (words) => {
   // Implement this method for wave 4
