@@ -120,6 +120,7 @@ describe('Adagrams', () => {
     });
 
     it('returns a score of 0 if given an empty input', () => {
+      // returns 0 for empty string or null input
       const emptyWord = '';
       const score1 = scoreWord(emptyWord);
       expect(score1).toBe(0);
