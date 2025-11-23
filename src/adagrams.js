@@ -79,7 +79,6 @@ export const usesAvailableLetters = (input, lettersInHand) => {
 //     if not word:
 //         return score
 //     else:
-        
 //         for letter in word.upper():
 //             score += LETTER_SCORES[letter]
 
@@ -117,6 +116,48 @@ export const scoreWord = (word) => {
 };
 
 
+// def get_highest_word_score(word_list):
+//     best_word = word_list[0]
+//     score = score_word(word_list[0])
+
+//     for i in range(1,len(word_list)): 
+//         current_word = word_list[i]
+//         current_score = score_word(current_word)
+
+
+//         if current_score > score:
+//             best_word = current_word
+//             score = current_score
+
+//         elif current_score == score:
+//             if len(current_word) == 10 and len(best_word) != 10:
+//                 best_word = current_word
+//             else:
+//                 if len(best_word) != 10 and len(current_word) < len(best_word):
+//                     best_word = current_word
+
+//     highest_score = (best_word, score)
+
+//     return highest_score
 export const highestScoreFrom = (words) => {
-  // Implement this method for wave 4
+  let winningWord = words[0];
+  let winningScore = scoreWord(words[0]);
+  for (let i = 1; i < words.length; i ++){
+    const currentWord = words[i];
+    const currentScore = scoreWord(currentWord);
+
+    if (currentScore > winningScore){
+      winningWord = currentWord;
+      winningScore = currentScore;
+    } else if (currentScore === winningScore){
+      if (currentWord.length === 10 && winningWord.length !== 10){
+        winningWord = currentWord;
+      } else {
+        if (winningWord.length !== 10 && currentWord.length < winningWord.length){
+          winningWord = currentWord;
+        }
+      }
+    }
+  }
+  return { word: winningWord, score: winningScore };
 };
